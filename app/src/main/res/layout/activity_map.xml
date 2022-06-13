@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Torch is an Android application for the optimal routing of offline
+  ~ mobile devices.
+  ~ Copyright (C) 2021-2022  DIMITRIS(.)MANTAS(@outlook.com)
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:importantForAccessibility="yes"
+    tools:context=".Main">
+
+    <com.dimitrismantas.torch.ui.map.ExtendedMapView
+        android:id="@+id/mapView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/odMarkerLegend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/odTextField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/odTextField"
+        app:srcCompat="@drawable/ic_origin_marker_green_30dp" />
+
+
+    <EditText
+        android:id="@+id/odTextField"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_edittext_white"
+        android:ems="10"
+        android:hint="Choose an origin"
+
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:singleLine="true"
+        android:textColor="@color/colorSecondary"
+        android:textColorHighlight="#CCCCCC"
+        android:textColorHint="#888888"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/odMarkerLegend"
+        app:layout_constraintTop_toTopOf="@+id/mapView" />
+
+    <ImageButton
+        android:id="@+id/resetMapPositionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/odTextField"
+        app:srcCompat="@drawable/bt_reset_map_position_dark_teal_48dp" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/routeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorSecondary"
+        app:layout_constraintBottom_toTopOf="@+id/mapDataCredit"
+        app:layout_constraintEnd_toEndOf="@+id/mapDataCredit"
+        app:srcCompat="@drawable/bt_route_white_24dp"
+        app:tint="@color/colorOnSecondary" />
+
+    <ImageButton
+        android:id="@+id/deletePreviousRouteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        app:layout_constraintBottom_toTopOf="@+id/routeButton"
+        app:layout_constraintEnd_toEndOf="@+id/routingInProgressNotifier"
+        app:layout_constraintStart_toStartOf="@+id/routingInProgressNotifier"
+        app:srcCompat="@drawable/bt_delete_route_dark_teal_48dp" />
+
+    <ImageButton
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/odTextField"
+        app:srcCompat="@drawable/bt_help_dark_teal_48dp" />
+
+    <TextView
+        android:id="@+id/mapDataCredit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:linksClickable="true"
+        android:text="@string/map_credits"
+        android:textColor="@color/colorOnPrimary"
+        android:textColorLink="@color/colorPrimaryVariant"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/routingInProgressNotifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/resetMapPositionButton"
+        app:layout_constraintStart_toStartOf="@+id/resetMapPositionButton"
+        app:layout_constraintTop_toBottomOf="@+id/resetMapPositionButton"
+        app:srcCompat="@drawable/ic_routing_in_progress_notifier_dark_teal_48dp" />
+
+    <TextView
+        android:id="@+id/routeAttributes"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_textview_background"
+        android:gravity="center"
+
+
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/resetMapPositionButton"
+        app:layout_constraintStart_toEndOf="@+id/helpButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

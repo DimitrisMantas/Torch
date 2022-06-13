@@ -1,0 +1,31 @@
+<!--
+  ~ Torch is an Android application for the optimal routing of offline
+  ~ mobile devices.
+  ~ Copyright (C) 2021-2022  DIMITRIS(.)MANTAS(@outlook.com)
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,24m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0" />
+    <path
+        android:fillColor="#2A4759"
+        android:pathData="M22.2,35h3.7v-3.7h-3.7V35zM24,13c-4.1,0 -7.3,3.3 -7.3,7.3h3.7c0,-2 1.6,-3.7 3.7,-3.7s3.7,1.6 3.7,3.7c0,3.7 -5.5,3.2 -5.5,9.2H26c0,-4.1 5.5,-4.6 5.5,-9.2C31.3,16.3 28.1,13 24,13z" />
+</vector>

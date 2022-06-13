@@ -1,0 +1,133 @@
+### Android
+# Android Studio Files
+*.iml
+/**/.idea/**/assetWizardSettings.xml
+/**/.idea/**/caches
+/**/.idea/**/dictionaries
+/**/.idea/**/gradle.xml
+/**/.idea/**/libraries
+/**/.idea/**/modules.xml
+/**/.idea/**/navEditor.xml
+/**/.idea/**/tasks.xml
+/**/.idea/**/workspace.xml
+# ART & Dalvik VM Files
+*.dex
+# Auto-Generated Files
+/**/bin/
+/**/gen/
+#/**/out/
+# Build Files
+*.aab
+*.aar
+*.ap_
+*.apk
+# External Native Build Files
+.externalNativeBuild
+/**/.cxx/
+# Fastlane Files
+fastlane/**/Preview.html
+fastlane/**/readme.md
+fastlane/**/report.xml
+fastlane/**/screenshots
+fastlane/**/test_output
+# Freeline Files
+/**/freeline/
+freeline.py
+freeline_project_description.json
+# Google Services Files
+google-services.json
+# Gradle Files
+/**/.gradle/
+/**/build/
+# Keystore Files
+*.jks
+*.keystore
+# Linter Files
+/**/lint/**/eports/
+/**/lint/**/generated/
+/**/lint/**/intermediates/
+/**/lint/**/outputs/
+/**/lint/**/tmp/
+# Local Configuration Files
+local.properties
+# Log Files
+*.log
+# Profiler Files
+*.hprof
+# ProGuard Files
+/**/proguard/
+#  Release Build Files
+/**/release/
+# VCS Files
+vcs.xml
+### Java
+# BlueJ Files
+*.ctxt
+# Compiled Class Files
+*.class
+# Mobile Tools for Java (J2ME) Files
+/**/.mtj.tmp/
+# Package Files
+*.ear
+*.jar
+*.nar
+*.rar
+*.tar.gz
+*.war
+*.zip
+# VM Crash Logs
+hs_err_pid*
+### JetBrains IDEs
+# ???
+/**/.idea_modules/
+# Auto-Generated Files
+/**/.idea/**/contentModel.xml
+# Capture Files
+/**/captures/
+# CMake Files
+/**/cmake-build-*/
+# Crashlytics Plugin Files
+com_crashlytics_export_strings.xml
+crashlytics-build.properties
+crashlytics.properties
+fabric.properties
+# Cursive Clojure Plugin Files
+/**/.idea/**/replstate.xml
+# Gradle & Maven Auto-Imported Files
+*.ipr
+/**/.idea/**/*.iml
+/**/.idea/**/artifacts
+/**/.idea/**/compiler.xml
+/**/.idea/**/jarRepositories.xml
+/**/.idea/**/modules
+# JIRA Plugin Files
+atlassian-ide-plugin.xml
+# Mongo Explorer Plugin Files
+/**/.idea/**/mongoSettings.xml
+# Navigation Editor Files
+/**/.navigation/
+# Project Format File
+*.iws
+# REST API Client Files
+/**/.idea/**/httpRequests
+# Sensitive or High-Churn Files
+/**/.idea/**/dataSources/
+/**/idea/**/dataSources.ids
+/**/idea/**/dataSources.local.xml
+/**/idea/**/dbnavigator.xml
+/**/idea/**/dynamic.xml
+/**/idea/**/sqlDataSources.xml
+/**/idea/**/uiDesigner.xml
+# Serialized Cache Files
+/**/.idea/**/caches/**/build_file_checksums.ser
+# User-Specific Files
+/**/.idea/**/misc.xml
+/**/.idea/**/shelf
+/**/.idea/**/usage.statistics.xml
+### Project Specific Files
+# Large Files
+grc.bin
+grc.edf
+grc.map
+grc.vdf
+/**/serial/**/com/**/dimitrismantas/**/torch/**/util/**/serial/
