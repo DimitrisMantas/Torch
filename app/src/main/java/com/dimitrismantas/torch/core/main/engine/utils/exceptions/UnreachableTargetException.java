@@ -26,7 +26,7 @@ package com.dimitrismantas.torch.core.main.engine.utils.exceptions;
  * @see EqualEndpointException
  * @since 1.0.0
  */
-public final class UnreachableTargetException extends Exception {
+public final class UnreachableTargetException extends RuntimeException {
     public UnreachableTargetException(final String message) {
         super(message);
     }

@@ -23,15 +23,11 @@ import android.util.Log;
 import com.dimitrismantas.torch.core.math.SupplementalMath;
 
 import org.oscim.backend.CanvasAdapter;
-import org.oscim.backend.canvas.Color;
 import org.oscim.core.BoundingBox;
 import org.oscim.core.GeoPoint;
 import org.oscim.core.MapPosition;
 import org.oscim.core.MercatorProjection;
 import org.oscim.core.Tile;
-import org.oscim.layers.vector.VectorLayer;
-import org.oscim.layers.vector.geometries.RectangleDrawable;
-import org.oscim.layers.vector.geometries.Style;
 import org.oscim.map.Map;
 
 import java.util.List;

@@ -30,7 +30,7 @@ import com.dimitrismantas.torch.core.utils.serialization.DeserializationManager;
  * @see UnreachableTargetException
  * @since 1.0.0
  */
-public final class EqualEndpointException extends Exception {
+public final class EqualEndpointException extends RuntimeException {
     public EqualEndpointException(final String message) {
         super(message);
     }

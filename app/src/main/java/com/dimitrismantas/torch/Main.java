@@ -91,7 +91,7 @@ public final class Main extends AppCompatActivity implements ItemizedLayer.OnIte
     private static final String TAG = "Main";
     private static final double[] INITIAL_MAP_CENTER = {37.9838,23.7275};
     private static final int INITIAL_MAP_ZOOM_LEVEL = 12;
-    private static final double[] GRAPH_BOUNDING_BOX = {36.4025066, 20.0121613, 39.2732167, 26.6283465};
+    private static final double[] GRAPH_BOUNDING_BOX = {36.4025066, 20.0121613, 41.7575614, 26.6283465};
     /**
      * The list containing all points currently on the map. It includes marker locations and route endpoints.
      *
