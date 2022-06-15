@@ -24,46 +24,48 @@ import com.dimitrismantas.torch.core.main.engine.utils.exceptions.UnreachableTar
 import com.dimitrismantas.torch.core.main.engine.utils.heuristics.GreatCircleDistanceHeuristic;
 import com.dimitrismantas.torch.core.main.engine.utils.heuristics.AbstractHeuristic;
 import com.dimitrismantas.torch.core.main.engine.utils.heuristics.TravelTimeHeuristic;
+import com.dimitrismantas.torch.core.main.engine.utils.pq.PriorityQueueEntry;
 import com.dimitrismantas.torch.core.utils.serialization.DeserializedEdge;
 import com.dimitrismantas.torch.core.utils.serialization.DeserializedGraph;
 import com.dimitrismantas.torch.core.utils.serialization.DeserializedVertex;
 import com.dimitrismantas.torch.core.utils.serialization.DeserializationManager;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public final class AStar {
     private final DeserializedGraph graph;
     private AbstractHeuristic heuristic;
     private Path route;
-    private PriorityQueue<DeserializedVertex> pq;
-    private short numExecs;
+    private PriorityQueue<PriorityQueueEntry> priorityQueue;
+    private short numExecutions;
 
     public AStar(final DeserializedGraph graph) {
         this.graph = graph;
     }
 
-    @SuppressWarnings("ConstantConditions")
-    public Path run(final DeserializedVertex source, final DeserializedVertex target, final OptimizationMode optMode) throws UnreachableTargetException, EqualEndpointException {
-        invalidatePreviousExecution(target, optMode);
-        // This can happen if the origin and destination are sufficiently close to each other.
+
+    public Path run(final DeserializedVertex source, final DeserializedVertex target, final OptimizationMode optimizationMode) {
+        invalidatePreviousExecution(target, optimizationMode);
+        // This can happen if the origin and destination are so close to each other that their nearest neighbors are equal.
         if (DeserializationManager.equals(source, target)) {
             throw new EqualEndpointException("The source and target vertices are equal.");
         }
         // The correct value of the estimated cost to from the source vertex to the target is equal to the corresponding value of the appropriate heuristic. However, since the priority queue is initially empty, the source is guaranteed to be dequeued first.
         initialize(source, -1, 0, 0);
 
-        int N = 0;
-
-        while (!pq.isEmpty()) {
-            final DeserializedVertex curr = pq.poll();
+        while (!priorityQueue.isEmpty()) {
+            final PriorityQueueEntry entry =  priorityQueue.poll();
+            final DeserializedVertex curr = graph.vertices(entry.getVertexLabel());
             // Since there might be two "copies" of the current vertex in the priority queue, we must be able to differentiate between them so that we use the correct one (i.e., the one with the minimum key).
-            if (curr.pqKey() > curr.actualCostFromSource() + heuristic.calc(curr)) {
+            if (entry.getKey() > curr.actualCostFromSource()+heuristic.calc(curr)) {
                 continue;
             }
-
-            N++;
-            route.setN(N);
 
             if (DeserializationManager.equals(curr, target)) {
                 populatePath(source, curr);
@@ -73,7 +75,7 @@ public final class AStar {
                 final DeserializedEdge outEdge = curr.outgoingEdges(i);
                 final DeserializedVertex adj = graph.vertices(outEdge.endVertexLabel());
                 int costFromSource = curr.actualCostFromSource();
-                switch (optMode) {
+                switch (optimizationMode) {
                     case MINIMIZE_DISTANCE:
                         costFromSource += outEdge.length();
                         break;
@@ -82,7 +84,7 @@ public final class AStar {
                         break;
                 }
                 final int costToTarget = heuristic.calc(adj);
-                if (adj.numInitialized() == numExecs) {
+                if (adj.numInitialized() == numExecutions) {
                     relax(curr, adj, costFromSource, costToTarget);
                 } else {
                     initialize(adj, curr.lbl(), costFromSource, costToTarget);
@@ -98,25 +100,24 @@ public final class AStar {
     private void invalidatePreviousExecution(final DeserializedVertex target, final OptimizationMode optMode) {
         heuristic = getHeuristic(target, optMode);
         route = new Path();
-        pq = new PriorityQueue<>(Comparator.comparingInt(DeserializedVertex::pqKey));
-        numExecs++;
+        priorityQueue = new PriorityQueue<>(Comparator.comparingInt(PriorityQueueEntry::getKey));
+        numExecutions++;
     }
 
-    private void initialize(final DeserializedVertex v, final int predLbl, final int costFromSource, final int costToTarget) {
-        v.mutateActualCostFromSource(costFromSource);
-        v.mutateNumInitialized(numExecs);
-        v.mutatePqKey(costFromSource + costToTarget);
-        v.mutatePredecessorLabel(predLbl);
-        pq.add(v);
+    private void initialize(final DeserializedVertex vertex, final int predecessorLabel, final int costFromSource, final int costToTarget) {
+        vertex.mutateActualCostFromSource(costFromSource);
+        vertex.mutateNumInitialized(numExecutions);
+        vertex.mutatePredecessorLabel(predecessorLabel);
+        priorityQueue.add(new PriorityQueueEntry(costFromSource+costToTarget, vertex.lbl()));
+
     }
 
-    private void relax(final DeserializedVertex v, final DeserializedVertex adj, final int costFromSource, final int costToTarget) {
-        if (costFromSource < adj.actualCostFromSource()) {
-            adj.mutateActualCostFromSource(costFromSource);
-            adj.mutatePqKey(costFromSource + costToTarget);
-            adj.mutatePredecessorLabel(v.lbl());
+    private void relax(final DeserializedVertex vertex, final DeserializedVertex adjacent, final int costFromSource, final int costToTarget) {
+        if (costFromSource < adjacent.actualCostFromSource()) {
+            adjacent.mutateActualCostFromSource(costFromSource);
+            adjacent.mutatePredecessorLabel(vertex.lbl());
             // Add a "duplicate" vertex to the priority queue, whose key is smaller than that of its copy. This means that between these two vertices, this one will be dequeued first.
-            pq.add(adj);
+            priorityQueue.add(new PriorityQueueEntry(costFromSource+costToTarget, adjacent.lbl()));
         }
     }
 

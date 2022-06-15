@@ -27,7 +27,7 @@ public final class Vertex {
     private final float lat;
     private final float lon;
     private final int actualCostFromSource = 0;
-    private final int pqKey = 0;
+
     private final short numInitialized = 0;
     private final int predecessorLabel = -1;
 
@@ -37,9 +37,7 @@ public final class Vertex {
         this.lon = lon;
     }
 
-    public int getPqKey() {
-        return pqKey;
-    }
+
 
     public int getLabel() {
         return this.lbl;

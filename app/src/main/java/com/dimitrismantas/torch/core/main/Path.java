@@ -27,7 +27,7 @@ public final class Path {
     private final List<DeserializedVertex> endpoints = new ArrayList<>();
     private int length;
     private int travelTime;
-    private int N;
+
 
     public Path() {
     }
@@ -56,11 +56,4 @@ public final class Path {
         this.travelTime += travelTime;
     }
 
-    public int getN() {
-        return N;
-    }
-
-    public void setN(final int n) {
-        this.N = n;
-    }
 }

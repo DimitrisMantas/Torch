@@ -88,7 +88,7 @@ public final class Graph {
                 edgeData[j] = edgeOffset;
             }
             final int edgesOffset = DeserializedVertex.createOutgoingEdgesVector(builder, edgeData);
-            final int vertexOffset = DeserializedVertex.createDeserializedVertex(builder, vertex.getLabel(), vertex.getLatitude(), vertex.getLongitude(), vertex.getNumInitialized(), vertex.getActualCostFromSource(), vertex.getPredecessorLabel(), vertex.getPqKey(), edgesOffset);
+            final int vertexOffset = DeserializedVertex.createDeserializedVertex(builder, vertex.getLabel(), vertex.getLatitude(), vertex.getLongitude(), vertex.getNumInitialized(), vertex.getActualCostFromSource(), vertex.getPredecessorLabel(), edgesOffset);
             vertexData[i] = vertexOffset;
         }
         final int verticesOffset = DeserializedGraph.createVerticesVector(builder, vertexData);
