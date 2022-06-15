@@ -122,8 +122,8 @@ public final class Main extends AppCompatActivity implements ItemizedLayer.OnIte
         setContentView(R.layout.activity_map);
         mapView = findViewById(R.id.mapView);
         map = mapView.map();
-        odTextField = findViewById(R.id.odTextField);
-        odMarkerLegend = findViewById(R.id.odMarkerLegend);
+        odTextField = findViewById(R.id.textInput);
+        odMarkerLegend = findViewById(R.id.markerHint);
         routeAttributeTextView = findViewById(R.id.routeAttributes);
         // Instantiate the UI sections.
         instantiateMap(FileManager.concatenateNestedPaths(FileManager.getPrimaryStorageDevicePath(), "map/grc.map"));
@@ -132,7 +132,7 @@ public final class Main extends AppCompatActivity implements ItemizedLayer.OnIte
         // Unpack the non-critical application assets.
 
         ThreadManager.instantiateRoutingServices(getApplicationContext());
-        final ImageButton helpButton = findViewById(R.id.helpButton);
+        final ImageButton helpButton = findViewById(R.id.info);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,7 +230,7 @@ public final class Main extends AppCompatActivity implements ItemizedLayer.OnIte
 
     private void instantiateMapController() {
         MapController mapController = new MapController(map, pointsOnMap);
-        final ImageButton resetMapButton = this.findViewById(R.id.resetMapPositionButton);
+        final ImageButton resetMapButton = this.findViewById(R.id.resetMapPosition);
         resetMapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -249,7 +249,7 @@ public final class Main extends AppCompatActivity implements ItemizedLayer.OnIte
     private void instantiateRoutingManager() {
         // Android throws a NullPointerException if this view is instantiated in onCreate()...
         final ImageView routingInProgressNotifier = findViewById(R.id.routingInProgressNotifier);
-        final ImageButton clearButton = findViewById(R.id.deletePreviousRouteButton);
+        final ImageButton clearButton = findViewById(R.id.clearRoute);
         final RouteManager routeManager = new RouteManager(this, map, pointsOnMap, odTextField, odMarkerLegend, routingInProgressNotifier, clearButton, routeAttributeTextView);
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,7 +257,7 @@ public final class Main extends AppCompatActivity implements ItemizedLayer.OnIte
                 routeManager.deleteRoute();
             }
         });
-        final ImageButton routeButton = findViewById(R.id.routeButton);
+        final ImageButton routeButton = findViewById(R.id.route);
         registerForContextMenu(routeButton);
         routeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,7 +270,7 @@ public final class Main extends AppCompatActivity implements ItemizedLayer.OnIte
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        if (v.getId() == R.id.routeButton) {
+        if (v.getId() == R.id.route) {
             menu.setHeaderTitle("Optimization Modes");
             getMenuInflater().inflate(R.menu.menu_optimization_mode, menu);
         }
@@ -279,7 +279,7 @@ public final class Main extends AppCompatActivity implements ItemizedLayer.OnIte
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         final ImageView routingInProgressNotifier = findViewById(R.id.routingInProgressNotifier);
-        final ImageButton clearButton = findViewById(R.id.deletePreviousRouteButton);
+        final ImageButton clearButton = findViewById(R.id.clearRoute);
         final RouteManager routeManager = new RouteManager(this, map, pointsOnMap, odTextField, odMarkerLegend, routingInProgressNotifier, clearButton, routeAttributeTextView);
         if (item.getItemId() == R.id.minimizeDistance) {
             routeManager.route(AStar.OptimizationMode.MINIMIZE_DISTANCE);
