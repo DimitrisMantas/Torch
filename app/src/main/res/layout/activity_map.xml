@@ -36,53 +36,75 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <ImageView
-        android:id="@+id/odMarkerLegend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/odTextField"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/odTextField"
-        app:srcCompat="@drawable/ic_origin_marker_green_30dp" />
-
 
     <EditText
-        android:id="@+id/odTextField"
+        android:id="@+id/textInput"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/bg_edittext_white"
         android:ems="10"
-        android:hint="Choose an origin"
 
+        android:hint="Choose an origin"
         android:inputType="text"
-        android:paddingStart="16dp"
+        android:paddingStart="46dp"
         android:paddingEnd="16dp"
         android:singleLine="true"
         android:textColor="@color/colorSecondary"
         android:textColorHighlight="#CCCCCC"
         android:textColorHint="#888888"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/odMarkerLegend"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/mapView" />
 
-    <ImageButton
-        android:id="@+id/resetMapPositionButton"
+    <ImageView
+        android:id="@+id/markerHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textInput"
+        app:layout_constraintStart_toStartOf="@+id/textInput"
+        app:layout_constraintTop_toTopOf="@+id/textInput"
+        app:srcCompat="@drawable/ic_origin_marker_green_30dp" />
+
+    <ImageButton
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInput"
+        app:srcCompat="@drawable/bt_help_dark_teal_48dp" />
+
+    <ImageButton
+        android:id="@+id/resetMapPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/odTextField"
+        app:layout_constraintTop_toBottomOf="@+id/textInput"
         app:srcCompat="@drawable/bt_reset_map_position_dark_teal_48dp" />
 
 
+    <ImageButton
+        android:id="@+id/clearRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        app:layout_constraintBottom_toTopOf="@+id/route"
+        app:layout_constraintEnd_toEndOf="@+id/routingInProgressNotifier"
+        app:layout_constraintStart_toStartOf="@+id/routingInProgressNotifier"
+        app:srcCompat="@drawable/bt_delete_route_dark_teal_48dp" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/routeButton"
+        android:id="@+id/route"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -92,28 +114,6 @@
         app:layout_constraintEnd_toEndOf="@+id/mapDataCredit"
         app:srcCompat="@drawable/bt_route_white_24dp"
         app:tint="@color/colorOnSecondary" />
-
-    <ImageButton
-        android:id="@+id/deletePreviousRouteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/routeButton"
-        app:layout_constraintEnd_toEndOf="@+id/routingInProgressNotifier"
-        app:layout_constraintStart_toStartOf="@+id/routingInProgressNotifier"
-        app:srcCompat="@drawable/bt_delete_route_dark_teal_48dp" />
-
-    <ImageButton
-        android:id="@+id/helpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/odTextField"
-        app:srcCompat="@drawable/bt_help_dark_teal_48dp" />
 
     <TextView
         android:id="@+id/mapDataCredit"
@@ -135,9 +135,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/resetMapPositionButton"
-        app:layout_constraintStart_toStartOf="@+id/resetMapPositionButton"
-        app:layout_constraintTop_toBottomOf="@+id/resetMapPositionButton"
+        app:layout_constraintEnd_toEndOf="@+id/resetMapPosition"
+        app:layout_constraintStart_toStartOf="@+id/resetMapPosition"
+        app:layout_constraintTop_toBottomOf="@+id/resetMapPosition"
         app:srcCompat="@drawable/ic_routing_in_progress_notifier_dark_teal_48dp" />
 
     <TextView
@@ -153,8 +153,8 @@
         android:textAlignment="center"
         android:textIsSelectable="false"
         android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/resetMapPositionButton"
-        app:layout_constraintStart_toEndOf="@+id/helpButton"
+        app:layout_constraintEnd_toStartOf="@+id/resetMapPosition"
+        app:layout_constraintStart_toEndOf="@+id/info"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
