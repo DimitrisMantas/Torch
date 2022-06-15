@@ -24,18 +24,13 @@ import com.dimitrismantas.torch.core.main.engine.utils.exceptions.UnreachableTar
 import com.dimitrismantas.torch.core.main.engine.utils.heuristics.GreatCircleDistanceHeuristic;
 import com.dimitrismantas.torch.core.main.engine.utils.heuristics.AbstractHeuristic;
 import com.dimitrismantas.torch.core.main.engine.utils.heuristics.TravelTimeHeuristic;
-import com.dimitrismantas.torch.core.main.engine.utils.pq.PriorityQueueEntry;
+import com.dimitrismantas.torch.core.main.engine.utils.priorityqueue.PriorityQueueEntry;
 import com.dimitrismantas.torch.core.utils.serialization.DeserializedEdge;
 import com.dimitrismantas.torch.core.utils.serialization.DeserializedGraph;
 import com.dimitrismantas.torch.core.utils.serialization.DeserializedVertex;
 import com.dimitrismantas.torch.core.utils.serialization.DeserializationManager;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 import java.util.PriorityQueue;
 
 public final class AStar {

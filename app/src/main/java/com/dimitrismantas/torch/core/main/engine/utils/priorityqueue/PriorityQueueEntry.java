@@ -1,4 +1,4 @@
-package com.dimitrismantas.torch.core.main.engine.utils.pq;
+package com.dimitrismantas.torch.core.main.engine.utils.priorityqueue;
 
 public class PriorityQueueEntry {
     private final int key;
