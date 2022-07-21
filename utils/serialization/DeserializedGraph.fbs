@@ -1,0 +1,13 @@
+include "DeserializedVertex.fbs";
+
+// This is the eventual destination package of the compiled class.
+namespace com.dimitrismantas.torch.core.utils.serialization;
+
+// A table is roughly equivalent to a class in that it has fields of various types with both default and optional values.
+
+table DeserializedGraph {
+  vertices:[DeserializedVertex];
+}
+
+// This is the name of the top-level table in the schema.
+root_type DeserializedGraph;

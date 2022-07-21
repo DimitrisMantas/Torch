@@ -1,0 +1,18 @@
+include "DeserializedEdge.fbs";
+
+// This is the eventual destination package of the compiled class.
+namespace com.dimitrismantas.torch.core.utils.serialization;
+
+// A table is roughly equivalent to a class in that it has fields of various types with both default and optional values.
+table DeserializedVertex {
+  lbl:int;
+  lat:float;
+  lon:float;
+  num_initialized:short = 0;
+  actual_cost_from_source:int = 0;
+  predecessor_label:int = -1;
+  outgoing_edges:[DeserializedEdge];
+}
+
+// This is the name of the top-level table in the schema.
+root_type DeserializedVertex;
